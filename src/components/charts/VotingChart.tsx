@@ -1,6 +1,6 @@
 // src/components/charts/VotingChart.tsx
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Cell } from 'recharts';
-import { Voting } from '../../types';
+import type { Voting } from '../../types';
 
 interface VotingChartProps {
   voting: Voting;

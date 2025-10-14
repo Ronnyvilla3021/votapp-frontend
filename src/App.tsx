@@ -1,11 +1,11 @@
 // src/App.tsx
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { VotingProvider } from './context/VotingContext.tsx';
-import { Layout } from './components/common/Layout.tsx';
-import { Home } from './pages/Home.tsx';
-import { Vote } from './pages/Vote.tsx';
-import { Admin } from './pages/Admin.tsx';
-import { Results } from './pages/Results.tsx';
+import { VotingProvider } from './context/VotingContext';
+import { Layout } from './components/common/Layout';
+import { Home } from './pages/Home';
+import { Vote } from './pages/Vote';
+import { Admin } from './pages/Admin';
+import { Results } from './pages/Results';
 
 function App() {
   return (

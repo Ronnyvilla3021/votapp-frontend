@@ -16,7 +16,7 @@ export const VotingProvider = ({ children }: { children: ReactNode }) => {
     return Math.random().toString(36).substring(2, 8).toUpperCase();
   };
 
-  const addVoting = (votingData: Omit<Voting, 'id' | 'code' | 'createdAt'>) => {
+  const addVoting = (votingData: Omit<Voting, 'id' | 'createdAt'>) => {
     const newVoting: Voting = {
       ...votingData,
       id: uuidv4(),

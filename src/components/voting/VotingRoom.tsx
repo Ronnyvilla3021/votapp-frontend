@@ -1,7 +1,7 @@
 // src/components/voting/VotingRoom.tsx
 import { useState } from 'react';
 import { Search, AlertCircle } from 'lucide-react';
-import { useVoting } from '../../context/VotingContext.tsx';
+import { useVoting } from '../../context/VotingContext';
 import { VoteForm } from './VoteForm';
 import type { Voting } from '../../types';
 

@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CheckCircle, AlertCircle } from 'lucide-react';
 import type { Voting } from '../../types';
-import { useVoting } from '../../context/VotingContext.tsx';
+import { useVoting } from '../../context/VotingContext';
 import { VoteCard } from './VoteCard';
 
 interface VoteFormProps {
