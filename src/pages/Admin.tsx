@@ -1,5 +1,5 @@
 // src/pages/Admin.tsx
-import { useState } from 'react'; 
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useVoting } from '../context/VotingContext';
 import { Dashboard } from '../components/admin/Dashboard';
