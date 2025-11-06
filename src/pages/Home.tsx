@@ -2,7 +2,8 @@
 import { useNavigate } from 'react-router-dom';
 import { useVoting } from '../context/VotingContext';
 import { AuthForm } from '../components/auth/AuthForm';
-import { Vote, Shield, BarChart3, Lock, Users, Zap } from 'lucide-react';
+import { Vote, Shield, BarChart3, Lock, Users, Zap, CheckCircle, Award } from 'lucide-react';
+import styles from './Home.module.css';
 
 export const Home = () => {
   const { currentUser } = useVoting();
@@ -10,124 +11,302 @@ export const Home = () => {
 
   if (!currentUser) {
     return (
-      <div className="w-full">
+      <div className={styles.container}>
         {/* Hero Section */}
-        <div className="text-center mb-16">
-          <div className="inline-block mb-6">
-            <div className="bg-gradient-to-r from-blue-600 to-indigo-600 p-4 rounded-2xl shadow-2xl">
-              <Vote className="w-16 h-16 text-white" />
-            </div>
+        <div className={styles.heroSection}>
+          <div className={styles.heroBackground}>
+            <div className={`${styles.blob} ${styles.blobBlue}`}></div>
+            <div className={`${styles.blob} ${styles.blobPurple}`}></div>
+            <div className={`${styles.blob} ${styles.blobIndigo}`}></div>
           </div>
-          
-          <h1 className="text-6xl font-bold text-gray-900 mb-4 leading-tight">
-            Bienvenido a{' '}
-            <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-              VotApp
-            </span>
-          </h1>
-          
-          <p className="text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Sistema de votaciones progresivo diseñado para instituciones educativas
-          </p>
-          
-          <div className="mt-6 flex items-center justify-center space-x-4 text-sm text-gray-500">
-            <span className="flex items-center space-x-2">
-              <Lock className="w-4 h-4" />
-              <span>Seguro</span>
-            </span>
-            <span>•</span>
-            <span className="flex items-center space-x-2">
-              <Users className="w-4 h-4" />
-              <span>Transparente</span>
-            </span>
-            <span>•</span>
-            <span className="flex items-center space-x-2">
-              <Zap className="w-4 h-4" />
-              <span>Instantáneo</span>
-            </span>
+
+          <div className={styles.heroContent}>
+            <div className={styles.badge}>
+              <Award className={styles.badgeIcon} />
+              <span>Sistema Oficial de Votaciones</span>
+            </div>
+
+            <h1 className={styles.heroTitle}>
+              <span className={styles.heroTitleLine}>Tu voz</span>
+              <span className={styles.heroTitleGradient}>importa</span>
+            </h1>
+            
+            <p className={styles.heroSubtitle}>
+              Participa en las decisiones que transforman tu institución educativa
+            </p>
+
+            <div className={styles.statsContainer}>
+              <div className={styles.statChip}>
+                <Lock className={`${styles.statIcon} ${styles.statIconBlue}`} />
+                <span className={styles.statText}>100% Seguro</span>
+              </div>
+              <div className={styles.statChip}>
+                <Zap className={`${styles.statIcon} ${styles.statIconPurple}`} />
+                <span className={styles.statText}>Resultados Instantáneos</span>
+              </div>
+              <div className={styles.statChip}>
+                <Users className={`${styles.statIcon} ${styles.statIconIndigo}`} />
+                <span className={styles.statText}>100% Transparente</span>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Features Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-          <div className="bg-white rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:-translate-y-1">
-            <div className="bg-gradient-to-br from-blue-500 to-blue-600 w-16 h-16 rounded-xl flex items-center justify-center mx-auto mb-6 shadow-lg">
-              <Vote className="w-8 h-8 text-white" />
-            </div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-3 text-center">Fácil de Usar</h3>
-            <p className="text-gray-600 text-center leading-relaxed">
-              Interfaz intuitiva diseñada para facilitar la participación de toda la comunidad educativa
+        {/* Sección "Cómo funciona" */}
+        <div className={styles.stepsSection}>
+          <div className={styles.sectionHeader}>
+            <h2 className={styles.sectionTitle}>
+              Votar es <span className={styles.sectionTitleHighlight}>súper fácil</span>
+            </h2>
+            <p className={styles.sectionSubtitle}>
+              Solo 3 pasos para hacer escuchar tu voz
             </p>
           </div>
 
-          <div className="bg-white rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:-translate-y-1">
-            <div className="bg-gradient-to-br from-indigo-500 to-purple-600 w-16 h-16 rounded-xl flex items-center justify-center mx-auto mb-6 shadow-lg">
-              <Shield className="w-8 h-8 text-white" />
+          <div className={styles.stepsGrid}>
+            <div className={`${styles.stepCard} ${styles.stepCardBlue}`}>
+              <div className={`${styles.stepNumber} ${styles.stepNumberBlue}`}>1</div>
+              <div className={styles.stepIcon}>
+                <Users className={styles.stepIconSvg} />
+              </div>
+              <h3 className={styles.stepTitle}>Identifícate</h3>
+              <p className={`${styles.stepDescription} ${styles.stepDescriptionBlue}`}>
+                Ingresa tu nombre y selecciona si eres votante o administrador
+              </p>
             </div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-3 text-center">Seguro y Confiable</h3>
-            <p className="text-gray-600 text-center leading-relaxed">
-              Sistema con validación de voto único que garantiza la integridad del proceso electoral
-            </p>
-          </div>
 
-          <div className="bg-white rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:-translate-y-1">
-            <div className="bg-gradient-to-br from-green-500 to-emerald-600 w-16 h-16 rounded-xl flex items-center justify-center mx-auto mb-6 shadow-lg">
-              <BarChart3 className="w-8 h-8 text-white" />
+            <div className={`${styles.stepCard} ${styles.stepCardPurple}`}>
+              <div className={`${styles.stepNumber} ${styles.stepNumberPurple}`}>2</div>
+              <div className={styles.stepIcon}>
+                <Vote className={styles.stepIconSvg} />
+              </div>
+              <h3 className={styles.stepTitle}>Ingresa el código</h3>
+              <p className={`${styles.stepDescription} ${styles.stepDescriptionPurple}`}>
+                Usa el código de 6 caracteres que te proporcionaron
+              </p>
             </div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-3 text-center">Resultados en Tiempo Real</h3>
-            <p className="text-gray-600 text-center leading-relaxed">
-              Visualización instantánea de resultados con gráficos interactivos y estadísticas detalladas
-            </p>
+
+            <div className={`${styles.stepCard} ${styles.stepCardIndigo}`}>
+              <div className={`${styles.stepNumber} ${styles.stepNumberIndigo}`}>3</div>
+              <div className={styles.stepIcon}>
+                <CheckCircle className={styles.stepIconSvg} />
+              </div>
+              <h3 className={styles.stepTitle}>¡Vota!</h3>
+              <p className={`${styles.stepDescription} ${styles.stepDescriptionIndigo}`}>
+                Selecciona tu opción favorita y confirma
+              </p>
+            </div>
           </div>
         </div>
 
-        {/* Auth Form */}
-        <AuthForm />
+        {/* Sección de Ingreso - NUEVA SECCIÓN */}
+        <div className={styles.authSection}>
+          <div className={styles.authContainer}>
+            <div className={styles.authHeader}>
+              <h2 className={styles.authTitle}>
+                ¡Comienza a <span className={styles.authTitleHighlight}>votar</span> ahora!
+              </h2>
+              <p className={styles.authSubtitle}>
+                Ingresa tus datos para participar en las votaciones
+              </p>
+            </div>
+            <div className={styles.authFormWrapper}>
+              <AuthForm />
+            </div>
+          </div>
+        </div>
+
+        {/* Sección "Por qué VotApp" */}
+        <div className={styles.whySection}>
+          <div className={styles.whyCard}>
+            <div className={styles.whyBlobTop}></div>
+            <div className={styles.whyBlobBottom}></div>
+            
+            <div className={styles.whyContent}>
+              <div className={styles.whyHeader}>
+                <h2 className={styles.whyTitle}>
+                  ¿Por qué usar <span className={styles.whyTitleHighlight}>VotApp</span>?
+                </h2>
+                <p className={styles.whySubtitle}>
+                  La plataforma más confiable para votaciones estudiantiles
+                </p>
+              </div>
+
+              <div className={styles.benefitsGrid}>
+                <div className={styles.benefitCard}>
+                  <div className={styles.benefitIconWrapper}>
+                    <div className={`${styles.benefitIcon} ${styles.benefitIconBlue}`}>
+                      <Shield className={styles.benefitIconSvg} />
+                    </div>
+                  </div>
+                  <div className={styles.benefitContent}>
+                    <h4 className={styles.benefitTitle}>Voto único garantizado</h4>
+                    <p className={styles.benefitDescription}>Sistema que evita votos duplicados y mantiene la integridad electoral</p>
+                  </div>
+                </div>
+
+                <div className={styles.benefitCard}>
+                  <div className={styles.benefitIconWrapper}>
+                    <div className={`${styles.benefitIcon} ${styles.benefitIconPurple}`}>
+                      <BarChart3 className={styles.benefitIconSvg} />
+                    </div>
+                  </div>
+                  <div className={styles.benefitContent}>
+                    <h4 className={styles.benefitTitle}>Resultados en tiempo real</h4>
+                    <p className={styles.benefitDescription}>Visualiza gráficos y estadísticas actualizadas al instante</p>
+                  </div>
+                </div>
+
+                <div className={styles.benefitCard}>
+                  <div className={styles.benefitIconWrapper}>
+                    <div className={`${styles.benefitIcon} ${styles.benefitIconIndigo}`}>
+                      <Vote className={styles.benefitIconSvg} />
+                    </div>
+                  </div>
+                  <div className={styles.benefitContent}>
+                    <h4 className={styles.benefitTitle}>Fácil de administrar</h4>
+                    <p className={styles.benefitDescription}>Panel intuitivo para crear y gestionar múltiples votaciones</p>
+                  </div>
+                </div>
+
+                <div className={styles.benefitCard}>
+                  <div className={styles.benefitIconWrapper}>
+                    <div className={`${styles.benefitIcon} ${styles.benefitIconGreen}`}>
+                      <Award className={styles.benefitIconSvg} />
+                    </div>
+                  </div>
+                  <div className={styles.benefitContent}>
+                    <h4 className={styles.benefitTitle}>Diseñado para estudiantes</h4>
+                    <p className={styles.benefitDescription}>Interfaz moderna que se adapta a dispositivos móviles</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
 
+  // Vista para usuarios autenticados
   return (
-    <div className="w-full">
-      <div className="text-center mb-12">
-        <h1 className="text-5xl font-bold text-gray-900 mb-4">
-          ¡Hola, <span className="text-blue-600">{currentUser.name}</span>!
+    <div className={styles.container}>
+      {/* Hero personalizado */}
+      <div className={styles.authenticatedSection}>
+        <div className={styles.heroBackground}>
+          <div className={`${styles.blob} ${styles.blobBlue}`} style={{ left: '25%' }}></div>
+          <div className={`${styles.blob} ${styles.blobPurple}`} style={{ right: '25%' }}></div>
+        </div>
+
+        <div className={styles.authenticatedBadge}>
+          <div className={styles.authenticatedBadgeInner}>
+            👋 Sesión activa
+          </div>
+        </div>
+
+        <h1 className={styles.authenticatedTitle}>
+          ¡Hola, <span className={styles.authenticatedName}>{currentUser.name}</span>!
         </h1>
-        <p className="text-xl text-gray-600">
+        
+        <p className={styles.authenticatedSubtitle}>
           {currentUser.role === 'admin' 
-            ? 'Panel de administración listo para gestionar votaciones' 
-            : '¿Qué te gustaría hacer hoy?'}
+            ? '🎯 Panel de administración listo' 
+            : '🗳️ ¿Listo para votar?'}
+        </p>
+        <p className={styles.authenticatedDescription}>
+          {currentUser.role === 'admin'
+            ? 'Gestiona votaciones y monitorea resultados en tiempo real'
+            : 'Tu participación hace la diferencia en nuestra comunidad'}
         </p>
       </div>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-        <button
-          onClick={() => navigate('/vote')}
-          className="group bg-white rounded-2xl shadow-xl p-10 hover:shadow-2xl transition-all duration-300 border-2 border-transparent hover:border-blue-500 hover:-translate-y-2"
-        >
-          <div className="bg-gradient-to-br from-blue-500 to-blue-600 w-20 h-20 rounded-xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform shadow-lg">
-            <Vote className="w-10 h-10 text-white" />
-          </div>
-          <h2 className="text-3xl font-bold text-gray-900 mb-3">Votar</h2>
-          <p className="text-gray-600 text-lg">
-            Participa en una votación activa ingresando el código proporcionado
-          </p>
-        </button>
-
-        {currentUser.role === 'admin' && (
+      {/* Action Cards */}
+      <div className={styles.actionsSection}>
+        <div className={styles.actionsGrid}>
           <button
-            onClick={() => navigate('/admin')}
-            className="group bg-white rounded-2xl shadow-xl p-10 hover:shadow-2xl transition-all duration-300 border-2 border-transparent hover:border-purple-500 hover:-translate-y-2"
+            onClick={() => navigate('/vote')}
+            className={`${styles.actionCard} ${styles.actionCardBlue}`}
           >
-            <div className="bg-gradient-to-br from-purple-500 to-indigo-600 w-20 h-20 rounded-xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform shadow-lg">
-              <Shield className="w-10 h-10 text-white" />
+            <div className={`${styles.actionCardBg} ${styles.actionCardBgBlue}`}></div>
+            
+            <div className={styles.actionCardContent}>
+              <div className={`${styles.actionCardIcon} ${styles.actionCardIconBlue}`}>
+                <Vote className={styles.actionCardIconSvg} />
+              </div>
+              
+              <h2 className={styles.actionCardTitle}>Votar Ahora</h2>
+              
+              <p className={styles.actionCardDescription}>
+                Ingresa el código de votación y participa en las decisiones importantes
+              </p>
+
+              <div className={`${styles.actionCardFooter} ${styles.actionCardFooterBlue}`}>
+                <span>Comenzar</span>
+                <div className={styles.actionCardArrow}>→</div>
+              </div>
             </div>
-            <h2 className="text-3xl font-bold text-gray-900 mb-3">Administrar</h2>
-            <p className="text-gray-600 text-lg">
-              Crea, gestiona y monitorea votaciones institucionales
-            </p>
+
+            <div className={`${styles.actionCardDecoration} ${styles.actionCardDecorationBlue}`}></div>
           </button>
-        )}
+
+          {currentUser.role === 'admin' && (
+            <button
+              onClick={() => navigate('/admin')}
+              className={`${styles.actionCard} ${styles.actionCardPurple}`}
+            >
+              <div className={`${styles.actionCardBg} ${styles.actionCardBgPurple}`}></div>
+              
+              <div className={styles.actionCardContent}>
+                <div className={`${styles.actionCardIcon} ${styles.actionCardIconPurple}`}>
+                  <Shield className={styles.actionCardIconSvg} />
+                </div>
+                
+                <h2 className={styles.actionCardTitle}>Panel Admin</h2>
+                
+                <p className={styles.actionCardDescription}>
+                  Crea nuevas votaciones y visualiza resultados detallados
+                </p>
+
+                <div className={`${styles.actionCardFooter} ${styles.actionCardFooterPurple}`}>
+                  <span>Administrar</span>
+                  <div className={styles.actionCardArrow}>→</div>
+                </div>
+              </div>
+
+              <div className={`${styles.actionCardDecoration} ${styles.actionCardDecorationPurple}`}></div>
+            </button>
+          )}
+        </div>
+      </div>
+
+      {/* Tips rápidos */}
+      <div className={styles.tipsSection}>
+        <div className={styles.tipsContainer}>
+          <div className={styles.tipsCard}>
+            <h3 className={styles.tipsTitle}>
+              <Zap className={styles.tipsTitleIcon} />
+              Tips rápidos
+            </h3>
+            <div className={styles.tipsGrid}>
+              <div className={styles.tipItem}>
+                <CheckCircle className={styles.tipIcon} />
+                <p className={styles.tipText}>Solo puedes votar una vez por votación</p>
+              </div>
+              <div className={styles.tipItem}>
+                <CheckCircle className={styles.tipIcon} />
+                <p className={styles.tipText}>Los resultados se actualizan en tiempo real</p>
+              </div>
+              <div className={styles.tipItem}>
+                <CheckCircle className={styles.tipIcon} />
+                <p className={styles.tipText}>Guarda el código para consultar resultados</p>
+              </div>
+              <div className={styles.tipItem}>
+                <CheckCircle className={styles.tipIcon} />
+                <p className={styles.tipText}>Tu voto es anónimo y seguro</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

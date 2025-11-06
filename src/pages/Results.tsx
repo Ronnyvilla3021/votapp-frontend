@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useVoting } from '../context/VotingContext';
 import { VotingChart } from '../components/charts/VotingChart';
 import { AlertCircle, ArrowLeft } from 'lucide-react';
+import styles from './Results.module.css';
 
 export const Results = () => {
   const { code } = useParams<{ code: string }>();
@@ -11,21 +12,21 @@ export const Results = () => {
 
   if (!code) {
     return (
-      <div className="max-w-md mx-auto">
-        <div className="bg-red-50 border-2 border-red-400 rounded-xl p-8 text-center">
-          <AlertCircle className="w-16 h-16 text-red-500 mx-auto mb-4" />
-          <h2 className="text-2xl font-bold text-gray-800 mb-2">
-            Código no válido
-          </h2>
-          <p className="text-gray-600 mb-6">
-            No se proporcionó un código de votación
-          </p>
-          <button
-            onClick={() => navigate('/')}
-            className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition"
-          >
-            Ir al inicio
-          </button>
+      <div className={styles.container}>
+        <div className={styles.alertContainer}>
+          <div className={`${styles.alertCard} ${styles.alertCardRed}`}>
+            <AlertCircle className={`${styles.alertIcon} ${styles.alertIconRed}`} />
+            <h2 className={styles.alertTitle}>Código no válido</h2>
+            <p className={styles.alertText}>
+              No se proporcionó un código de votación
+            </p>
+            <button
+              onClick={() => navigate('/')}
+              className={styles.alertButton}
+            >
+              Ir al inicio
+            </button>
+          </div>
         </div>
       </div>
     );
@@ -35,46 +36,47 @@ export const Results = () => {
 
   if (!voting) {
     return (
-      <div className="max-w-md mx-auto">
-        <div className="bg-yellow-50 border-2 border-yellow-400 rounded-xl p-8 text-center">
-          <AlertCircle className="w-16 h-16 text-yellow-500 mx-auto mb-4" />
-          <h2 className="text-2xl font-bold text-gray-800 mb-2">
-            Votación no encontrada
-          </h2>
-          <p className="text-gray-600 mb-6">
-            No existe una votación con el código <strong>{code}</strong>
-          </p>
-          <button
-            onClick={() => navigate('/vote')}
-            className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition"
-          >
-            Buscar otra votación
-          </button>
+      <div className={styles.container}>
+        <div className={styles.alertContainer}>
+          <div className={`${styles.alertCard} ${styles.alertCardYellow}`}>
+            <AlertCircle className={`${styles.alertIcon} ${styles.alertIconYellow}`} />
+            <h2 className={styles.alertTitle}>Votación no encontrada</h2>
+            <p className={styles.alertText}>
+              No existe una votación con el código{' '}
+              <span className={styles.alertCode}>{code}</span>
+            </p>
+            <button
+              onClick={() => navigate('/vote')}
+              className={styles.alertButton}
+            >
+              Buscar otra votación
+            </button>
+          </div>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="max-w-4xl mx-auto">
+    <div className={styles.container}>
       <button
         onClick={() => navigate(-1)}
-        className="flex items-center space-x-2 text-blue-600 hover:text-blue-800 font-medium mb-6"
+        className={styles.backButton}
       >
-        <ArrowLeft className="w-5 h-5" />
+        <ArrowLeft className={styles.backIcon} />
         <span>Volver</span>
       </button>
 
-      <div className="text-center mb-8">
-        <h1 className="text-4xl font-bold text-gray-800 mb-2">
-          Resultados de la Votación
-        </h1>
-        <p className="text-gray-600">
+      <div className={styles.header}>
+        <h1 className={styles.headerTitle}>Resultados de la Votación</h1>
+        <p className={styles.headerSubtitle}>
           Visualiza los resultados en tiempo real
         </p>
       </div>
 
-      <VotingChart voting={voting} />
+      <div className={styles.chartContainer}>
+        <VotingChart voting={voting} />
+      </div>
     </div>
   );
 };
