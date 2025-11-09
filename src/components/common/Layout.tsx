@@ -1,6 +1,8 @@
 // src/components/common/Layout.tsx
 import type { ReactNode } from 'react';
 import { Navbar } from './Navbar';
+import { InstallPWA } from './InstallPWA';
+
 
 interface LayoutProps {
   children: ReactNode;
@@ -18,6 +20,9 @@ export const Layout = ({ children }: LayoutProps) => {
         </div>
       </main>
       
+      {
+      <InstallPWA />}
+
       {/* Footer institucional */}
       <footer className="bg-gradient-to-r from-slate-800 via-slate-900 to-slate-800 text-white py-8 mt-auto border-t-4 border-blue-600">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

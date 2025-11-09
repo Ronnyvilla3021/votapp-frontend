@@ -6,8 +6,11 @@ import { Home } from './pages/Home';
 import { Vote } from './pages/Vote';
 import { Admin } from './pages/Admin';
 import { Results } from './pages/Results';
+import { usePWA } from './hooks/usePWA';
+
 
 function App() {
+  usePWA();
   return (
     <BrowserRouter>
       <VotingProvider>
