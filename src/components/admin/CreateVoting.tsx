@@ -48,9 +48,13 @@ export const CreateVoting = () => {
       return;
     }
 
+    // Generar código único para la votación (ejemplo: 6 caracteres)
+    const code = uuidv4().slice(0, 6).toUpperCase();
+
     addVoting({
       title: title.trim(),
       description: description.trim() || undefined,
+      code, // ← Se agrega el campo requerido
       options: filteredOptions.map(opt => ({
         id: uuidv4(),
         text: opt.trim(),
